@@ -1,0 +1,63 @@
+<head>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<H1>COUNTER USING HTML</H1>
+<div id="counterContainer">
+   
+    <div id="flex1">
+    <h2> Your Current Count is:</h2><div id="counter"> 1</div><br>
+    <div id="flex">
+    <button id="increment">Increment</button>
+    <button id="decrement">Decrement</button>
+    <button id="clear">Clear</button>
+    <ul id="error"></ul>
+    </div>
+</div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+  const counter = document.getElementById("counter");
+  const incrementBtn = document.getElementById("increment");
+  const decrementBtn = document.getElementById("decrement");
+  const clearBtn = document.getElementById("clear");
+  const error = document.getElementById("error");
+  
+  let count = parseInt(counter.innerText);
+  
+  incrementBtn.addEventListener("click", () => {
+    count++;
+    counter.innerText = count;
+    handleError(count);
+  });
+  
+  decrementBtn.addEventListener("click", () => {
+    if (count > 0) {
+      count--;
+      counter.innerText = count;
+      handleError(count);
+    }
+  });
+  
+  clearBtn.addEventListener("click", () => {
+    count = 0;
+    counter.innerText = count;
+    handleError(count);
+  });
+  
+  function handleError(currentCount) {
+    if (currentCount === 0) {
+      error.innerText = "Error: Cannot go below 0";
+      error.style.color = "red";
+      decrementBtn.style.display = "none";
+    } else {
+      error.innerText = "";
+      decrementBtn.style.display = "block";
+    }
+  
+    if (currentCount > 1) {
+      clearBtn.style.display = "block";
+    } else {
+      clearBtn.style.display = "none";
+    }
+  }
+  </script>
